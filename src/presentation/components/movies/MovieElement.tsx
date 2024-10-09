@@ -1,14 +1,22 @@
 import React from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Movie } from '../../../core/entities/movie.entity';
+import { RootStackParams } from '../../navigation/Navigation';
 
 interface Props {
   movie: Movie;
 }
 
 export const MovieElement = ({ movie }: Props) => {
+  const navigation = useNavigation<NavigationProp<RootStackParams>>();
   return (
-    <Pressable>
+    <Pressable
+      onPress={() => navigation.navigate('Details', { movieId: movie.id })}
+      style={({ pressed }) => ({
+        opacity: pressed ? 0.9 : 1,
+      })}
+    >
       <View style={styles.container}>
         <View style={styles.imageCointainer}>
           <Image
@@ -18,12 +26,13 @@ export const MovieElement = ({ movie }: Props) => {
         </View>
         <View style={styles.info}>
           <Text style={styles.title}>{movie.title}</Text>
-          <Text>{movie.releaseDate.toLocaleDateString('es-ES', {
-            day: 'numeric',   // Día del mes
-            month: 'long',
-            year: 'numeric',
-          }
-          )}</Text>
+          <Text>
+            {
+              movie.releaseDate.toLocaleDateString('es-ES', {
+                day: 'numeric', month: 'long', year: 'numeric',
+              })
+            }
+          </Text>
           <Text>Resting: {movie.rating.toFixed(2)} / 10</Text>
         </View>
       </View>
