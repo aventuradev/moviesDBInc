@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   info: {
     padding: 5,
-    width: 250,
+    width: 225,
     fontWeight: 'black',
   },
   title: {

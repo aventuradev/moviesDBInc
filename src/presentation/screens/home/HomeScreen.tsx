@@ -25,7 +25,7 @@ export const HomeScreen = () => {
     };
 
     return (
-        <ScrollView>
+        <ScrollView style={{padding:5}}>
             <Text style={{ fontSize: 30 }}>En Cartelera</Text>
             <View style={{ marginTop: top + 20, paddingBottom: 30 }}>
                 {
