@@ -26,7 +26,7 @@ export class MovieMapper {
             rating: movie.vote_average,
             backdrop: 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path,
             poster: 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
-            genres: movie.genres.map(genre => genre.name),
+            genres: movie.genres,
             duration: movie.runtime,
             budget: movie.budget,
             originalTitle: movie.original_title,

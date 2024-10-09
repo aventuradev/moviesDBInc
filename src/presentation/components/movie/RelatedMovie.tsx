@@ -1,23 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { Cast } from '../../../core/entities/cast.entity';
+import { Movie } from '../../../core/entities/movie.entity';
 
 interface Props {
-    actor: Cast;
+    movie: Movie;
 }
 
-export const CastActor = ({ actor }: Props) => {
+export const RelatedMovie = ({ movie }: Props) => {
     return (
         <View style={styles.container}>
             <Image
-                source={{ uri: actor.avatar }}
+                source={{ uri: movie.poster }}
                 style={{ width: 100, height: 150, borderRadius: 10 }}
             />
 
             <View style={styles.actorInfo}>
-                <Text style={{ fontSize: 15, fontWeight: 'bold' }}>{actor.name}</Text>
-                <Text style={{ fontSize: 12, opacity: 0.7 }}>{actor.character}</Text>
+                <Text style={{ fontSize: 12, opacity: 0.7 }}>{movie.title}</Text>
             </View>
         </View>
     );

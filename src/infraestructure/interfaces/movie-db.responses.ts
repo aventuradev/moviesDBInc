@@ -113,3 +113,12 @@ export interface MovieDBGenre {
     id:   number;
     name: string;
 }
+
+
+export interface MovieDBMoviesGenreResponse {
+    page:          number;
+    results:       Result[];
+    total_pages:   number;
+    total_results: number;
+}
+
