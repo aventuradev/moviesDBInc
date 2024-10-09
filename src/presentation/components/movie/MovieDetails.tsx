@@ -52,7 +52,7 @@ export const MovieDetails = ({ movie, cast, related }: Props) => {
             {/* Related */}
 
             <View style={{marginBottom: 20, marginHorizontal: 20 }}>
-                <Text style={{ fontSize: 23, marginVertical: 10, fontWeight: 'bold' }}>Recomendadas</Text>
+                <Text style={{ fontSize: 23, marginVertical: 10, fontWeight: 'bold' }}>Películas Recomendadas</Text>
                 <FlatList
                     data={related}
                     keyExtractor={(item) => item.id.toString()}

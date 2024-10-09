@@ -1,6 +1,5 @@
-import React from 'react'
-import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
-import { FullMovie } from '../../../core/entities/movie.entity'
+import React from 'react';
+import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
     releaseDate: Date;
 }
 
-export const MovieHeader = ({  poster, originalTitle, title, releaseDate }: Props) => {
+export const MovieHeader = ({ poster, originalTitle, title, releaseDate }: Props) => {
 
     const { height: screenHeight } = useWindowDimensions();
     const navigation = useNavigation();
@@ -31,14 +30,14 @@ export const MovieHeader = ({  poster, originalTitle, title, releaseDate }: Prop
             </View>
             <View style={styles.backButton}>
                 <Pressable
-                    onPress={()=> navigation.goBack()}
+                    onPress={() => navigation.goBack()}
                 >
                     <Text style={styles.backButtonText}>Regresar</Text>
                 </Pressable>
             </View>
         </>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     imageContainer: {
