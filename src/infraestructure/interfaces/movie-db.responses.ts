@@ -104,3 +104,12 @@ export interface MovieDBCast {
     department?:          string;
     job?:                 string;
 }
+
+export interface MovieDBGenreResponse {
+    genres: MovieDBGenre[];
+}
+
+export interface MovieDBGenre {
+    id:   number;
+    name: string;
+}

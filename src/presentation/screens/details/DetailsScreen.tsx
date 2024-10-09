@@ -1,21 +1,24 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
-import { Text } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../../navigation/Navigation';
 import { useMovie } from '../../hooks/useMovie';
 import { MovieHeader } from '../../components/movie/MovieHeader';
 import { MovieDetails } from '../../components/movie/MovieDetails';
 import { ScrollView } from 'react-native-gesture-handler';
+import { FullScreenLoader } from '../../components/loaders/FullScreenLoaders';
+import { useGenre } from '../../hooks/useGenre';
 
 interface Props extends StackScreenProps<RootStackParams, 'Details'> { }
 
 export const DetailsScreen = ({ route }: Props) => {
     const { movieId } = route.params;
     const { isLoading, movie, cast } = useMovie(movieId);
+    const { isLoading: genresIsLoading, genres } = useGenre();
 
-    if (isLoading) {
-        return <Text>Loading...</Text>
+    if (isLoading || genresIsLoading) {
+        return <FullScreenLoader />
     }
+    console.log(genres)
     return (
         <ScrollView>
             <MovieHeader

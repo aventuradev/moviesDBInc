@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Movie } from '../../../core/entities/movie.entity';
 import { MovieElement } from '../../components/movies/MovieElement';
+import { FullScreenLoader } from '../../components/loaders/FullScreenLoaders';
 
 export const HomeScreen = () => {
 
@@ -13,7 +14,7 @@ export const HomeScreen = () => {
     const { isLoading, nowPlaying } = useMovies();
 
     if (isLoading) {
-        return <Text>Cargando...</Text>;
+        return <FullScreenLoader />;
     }
 
     const sortAlphabetically = (movies: Movie[]): Movie[] => {
@@ -25,8 +26,8 @@ export const HomeScreen = () => {
     };
 
     return (
-        <ScrollView style={{padding:5}}>
-            <Text style={{ fontSize: 30 }}>En Cartelera</Text>
+        <ScrollView style={{ padding: 5 }}>
+            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>En Cartelera</Text>
             <View style={{ marginTop: top + 20, paddingBottom: 30 }}>
                 {
                     sortAlphabetically(nowPlaying).map(movie => <MovieElement key={movie.id} movie={movie} />)

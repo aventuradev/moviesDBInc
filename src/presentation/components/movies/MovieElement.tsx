@@ -33,7 +33,7 @@ export const MovieElement = ({ movie }: Props) => {
               })
             }
           </Text>
-          <Text>Resting: {movie.rating.toFixed(2)} / 10</Text>
+          <Text>{movie.rating.toFixed(2)} / 10</Text>
         </View>
       </View>
     </Pressable>
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     fontWeight: 'black',
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
