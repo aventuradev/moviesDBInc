@@ -8,12 +8,14 @@ import { Movie } from '../../../core/entities/movie.entity';
 import { MovieElement } from '../../components/movies/MovieElement';
 import { FullScreenLoader } from '../../components/loaders/FullScreenLoaders';
 import { useAuth } from '../../hooks/useAuth';
+import { useFavorites } from '../../hooks/useFavorites';
 
 export const HomeScreen = () => {
 
     useAuth();
     const { top } = useSafeAreaInsets();
     const { isLoading, nowPlaying } = useMovies();
+    const { favorites, editFavorites } = useFavorites();
 
     if (isLoading) {
         return <FullScreenLoader />;
@@ -32,7 +34,7 @@ export const HomeScreen = () => {
             <Text style={{ fontSize: 30, fontWeight: 'bold' }}>En Cartelera</Text>
             <View style={{ marginTop: top + 20, paddingBottom: 30 }}>
                 {
-                    sortAlphabetically(nowPlaying).map(movie => <MovieElement key={movie.id} movie={movie} />)
+                    sortAlphabetically(nowPlaying).map(movie => <MovieElement key={movie.id} movie={movie} favorites={favorites} editFavorites={editFavorites} />)
                 }
             </View>
         </ScrollView>

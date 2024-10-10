@@ -4,18 +4,19 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Movie } from '../../../core/entities/movie.entity';
 import { RootStackParams } from '../../navigation/Navigation';
-import { AirbnbRating } from 'react-native-ratings';
-import { useFavorites } from '../../hooks/useFavorites';
+import { StarIcon } from '../../../assets/StarIcon';
+import { HeartIcon } from '../../../assets/HeartIcon';
 
 interface Props {
   movie: Movie;
+  favorites: Record<string, Movie> | undefined;
+  editFavorites: (movie: Movie) => Promise<void>
 }
 
-export const MovieElement = ({ movie }: Props) => {
+export const MovieElement = ({ movie, favorites, editFavorites }: Props) => {
   const { width: screenWidth } = useWindowDimensions();
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
-  const { favorites, editFavorites } = useFavorites();
-  console.log(favorites)
+
   return (
     <Pressable
       onPress={() => navigation.navigate('Details', { movieId: movie.id })}
@@ -40,23 +41,22 @@ export const MovieElement = ({ movie }: Props) => {
             }
           </Text>
           <View style={{ flexDirection: 'row' }}>
-            <AirbnbRating
-              defaultRating={1}
-              count={1}
-              isDisabled={true}
-              showRating={false}
-              size={16}
-              selectedColor={movie.rating < 2 ? '' : movie.rating < 6 ? '#FF9529' : '#FFDF00'}
-            />
-            <Text>{movie.rating.toFixed(2)}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <StarIcon width={20} height={20} />
+              <Text>{movie.rating.toFixed(2)}</Text>
+            </View>
+            {
+              !!favorites && (
+                <Pressable
+                  onPress={() => editFavorites(movie)}
+                >
+                  <View style={{ marginLeft: 15 }}>
+                    <HeartIcon width={20} height={20} fill={!!favorites![movie.id]} />
+                  </View>
+                </Pressable>
+              )
+            }
           </View>
-          <Pressable
-            onPress={()=>editFavorites(movie)}
-          >
-            <Text
-              style={{ color: (favorites && favorites[movie.id]) ? 'red' : 'black' }}
-            >Save favorite</Text>
-          </Pressable>
         </View>
       </View>
     </Pressable>

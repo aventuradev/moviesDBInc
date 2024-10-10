@@ -32,6 +32,7 @@ export const useFavorites = () => {
     };
     useEffect(() => {
         loadFavorites();
+        console.log('Render');
     }, []);
 
 

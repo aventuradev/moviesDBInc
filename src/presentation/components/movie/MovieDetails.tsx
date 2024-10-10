@@ -4,9 +4,12 @@ import { Text, View } from 'react-native';
 import { AirbnbRating } from 'react-native-ratings';
 import { FullMovie, Movie } from '../../../core/entities/movie.entity';
 import { Cast } from '../../../core/entities/cast.entity';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, Pressable } from 'react-native-gesture-handler';
 import { CastActor } from '../cast/CastActor';
 import { RelatedMovie } from './RelatedMovie';
+import { StarIcon } from '../../../assets/StarIcon';
+import { HeartIcon } from '../../../assets/HeartIcon';
+import { useFavorites } from '../../hooks/useFavorites';
 
 interface Props {
     movie: FullMovie;
@@ -16,22 +19,27 @@ interface Props {
 }
 
 export const MovieDetails = ({ movie, cast, related, rateMovie }: Props) => {
+    const { favorites, editFavorites } = useFavorites();
     return (
         <>
             <View style={{ marginHorizontal: 20 }}>
                 <View style={{ flexDirection: 'row' }}>
                     <Text>{movie.rating.toFixed(2)}</Text>
-                    <AirbnbRating
-                        defaultRating={Math.round(movie.rating / 2)}
-                        count={1}
-                        isDisabled
-                        showRating={false}
-                        size={16}
-                        selectedColor={movie.rating <= 2 ? '' : movie.rating <= 6 ? '#FF9529' : '#FFDF00'}
-                    />
+                    <StarIcon width={20} height={20} />
                     <Text style={{ marginLeft: 5 }}>
                         - {movie.genres.map(genre => genre.name).join(', ')}
                     </Text>
+                    {
+                        !!favorites && (
+                            <Pressable
+                                onPress={() => editFavorites(movie)}
+                            >
+                                <View style={{ marginLeft: 15 }}>
+                                    <HeartIcon width={20} height={20} fill={!!favorites![movie.id]} />
+                                </View>
+                            </Pressable>
+                        )
+                    }
                 </View>
                 <Text style={{ fontSize: 23, marginTop: 10, fontWeight: 'bold' }}>
                     Historia
