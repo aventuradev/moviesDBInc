@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Movie } from '../../../core/entities/movie.entity';
 import { RootStackParams } from '../../navigation/Navigation';
 
@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const MovieElement = ({ movie }: Props) => {
+  const { width: screenWidth } = useWindowDimensions();
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
   return (
     <Pressable
@@ -24,7 +25,7 @@ export const MovieElement = ({ movie }: Props) => {
             source={{ uri: movie.poster }}
           />
         </View>
-        <View style={styles.info}>
+        <View style={{...styles.info, width: screenWidth - 150}}>
           <Text style={styles.title}>{movie.title}</Text>
           <Text>
             {
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
   },
   info: {
     padding: 5,
-    width: 225,
     fontWeight: 'black',
   },
   title: {

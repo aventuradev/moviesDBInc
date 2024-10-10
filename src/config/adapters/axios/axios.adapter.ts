@@ -26,4 +26,14 @@ export class AxiosAdapter extends HttpAdapter {
         }
     }
 
+    async post<T>(url: string, data: unknown, options?: Record<string, unknown>): Promise<T> {
+        try {
+            const response = await this.axiosInstance.post<T>(url, data, options);
+            return response.data;
+        } catch (error) {
+            console.log({ error });
+            throw new Error(`Error fetching post: ${url}.`);
+        }
+    }
+
 }

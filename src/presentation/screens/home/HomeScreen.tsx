@@ -7,15 +7,18 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Movie } from '../../../core/entities/movie.entity';
 import { MovieElement } from '../../components/movies/MovieElement';
 import { FullScreenLoader } from '../../components/loaders/FullScreenLoaders';
+import { useAuth } from '../../hooks/useAuth';
 
 export const HomeScreen = () => {
 
     const { top } = useSafeAreaInsets();
     const { isLoading, nowPlaying } = useMovies();
+    const { sessionId } = useAuth();
 
     if (isLoading) {
         return <FullScreenLoader />;
     }
+    console.log(sessionId);
 
     const sortAlphabetically = (movies: Movie[]): Movie[] => {
         return movies.sort((a, d) => {

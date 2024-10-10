@@ -1,5 +1,5 @@
-import { Cast } from "../../core/entities/cast.entity";
-import { MovieDBCast } from "../interfaces/movie-db.responses";
+import { Cast } from '../../core/entities/cast.entity';
+import { MovieDBCast } from '../interfaces/movie-db.responses';
 
 export class CastMapper {
 
@@ -11,6 +11,6 @@ export class CastMapper {
             avatar: actor.profile_path
                 ? 'https://image.tmdb.org/t/p/w500' + actor.profile_path
                 : 'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg',
-        }
+        };
     }
 }
