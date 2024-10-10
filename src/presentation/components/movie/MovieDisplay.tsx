@@ -9,7 +9,7 @@ interface Props {
     movie: Movie;
 }
 
-export const RelatedMovie = ({ movie }: Props) => {
+export const MovieDisplay = ({ movie }: Props) => {
     const navigation = useNavigation<NavigationProp<RootStackParams>>();
     return (
         <Pressable

@@ -6,7 +6,7 @@ import { FullMovie, Movie } from '../../../core/entities/movie.entity';
 import { Cast } from '../../../core/entities/cast.entity';
 import { FlatList, Pressable } from 'react-native-gesture-handler';
 import { CastActor } from '../cast/CastActor';
-import { RelatedMovie } from './RelatedMovie';
+import { MovieDisplay } from './MovieDisplay';
 import { StarIcon } from '../../../assets/StarIcon';
 import { HeartIcon } from '../../../assets/HeartIcon';
 import { useFavorites } from '../../hooks/useFavorites';
@@ -29,17 +29,13 @@ export const MovieDetails = ({ movie, cast, related, rateMovie }: Props) => {
                     <Text style={{ marginLeft: 5 }}>
                         - {movie.genres.map(genre => genre.name).join(', ')}
                     </Text>
-                    {
-                        !!favorites && (
-                            <Pressable
-                                onPress={() => editFavorites(movie)}
-                            >
-                                <View style={{ marginLeft: 15 }}>
-                                    <HeartIcon width={20} height={20} fill={!!favorites![movie.id]} />
-                                </View>
-                            </Pressable>
-                        )
-                    }
+                    <Pressable
+                        onPress={() => editFavorites(movie)}
+                    >
+                        <View style={{ marginLeft: 15 }}>
+                            <HeartIcon width={20} height={20} fill={!!favorites![movie.id]} />
+                        </View>
+                    </Pressable>
                 </View>
                 <Text style={{ fontSize: 23, marginTop: 10, fontWeight: 'bold' }}>
                     Historia
@@ -82,7 +78,7 @@ export const MovieDetails = ({ movie, cast, related, rateMovie }: Props) => {
                     keyExtractor={(item) => item.id.toString()}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => <RelatedMovie movie={item} />}
+                    renderItem={({ item }) => <MovieDisplay movie={item} />}
                 />
             </View>
         </>

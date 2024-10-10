@@ -3,7 +3,7 @@ import { Movie } from '../../core/entities/movie.entity';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useFavorites = () => {
-    const [favorites, setFavorites] = useState<Record<string, Movie>>();
+    const [favorites, setFavorites] = useState<Record<string, Movie>>({});
 
     const editFavorites = async (movie: Movie) => {
         const data = { [movie.id]: movie };
@@ -39,5 +39,6 @@ export const useFavorites = () => {
     return {
         favorites,
         editFavorites,
+        loadFavorites,
     };
 };
