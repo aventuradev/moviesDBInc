@@ -32,7 +32,7 @@ export const MovieElement = ({ movie, favorites, editFavorites }: Props) => {
             source={{ uri: movie.poster }}
           />
         </View>
-        <View style={{ ...styles.info, width: screenWidth - 150 }}>
+        <View style={{ ...styles.info, width: screenWidth - 165 }}>
           <Text style={styles.title}>{movie.title}</Text>
           <Text>
             {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.24,
     shadowRadius: 7,
-
+    paddingLeft: 5,
     elevation: 9,
   },
   info: {

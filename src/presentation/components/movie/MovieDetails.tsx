@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, useWindowDimensions, View } from 'react-native';
 import { AirbnbRating } from 'react-native-ratings';
 import { FullMovie, Movie } from '../../../core/entities/movie.entity';
 import { Cast } from '../../../core/entities/cast.entity';
@@ -20,14 +20,15 @@ interface Props {
 
 export const MovieDetails = ({ movie, cast, related, rateMovie }: Props) => {
     const { favorites, editFavorites } = useFavorites();
+    const { width: screenWidth } = useWindowDimensions();
     return (
         <>
             <View style={{ marginHorizontal: 20 }}>
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', width: screenWidth - 100 }}>
                     <Text>{movie.rating.toFixed(2)}</Text>
                     <StarIcon width={20} height={20} />
                     <Text style={{ marginLeft: 5 }}>
-                        - {movie.genres.map(genre => genre.name).join(', ')}
+                        - {movie.genres.map(genre => genre.name).slice(0,3).join(', ')}
                     </Text>
                     <Pressable
                         onPress={() => editFavorites(movie)}
