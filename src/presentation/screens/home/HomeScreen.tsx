@@ -11,14 +11,13 @@ import { useAuth } from '../../hooks/useAuth';
 
 export const HomeScreen = () => {
 
+    useAuth();
     const { top } = useSafeAreaInsets();
     const { isLoading, nowPlaying } = useMovies();
-    const { sessionId } = useAuth();
 
     if (isLoading) {
         return <FullScreenLoader />;
     }
-    console.log(sessionId);
 
     const sortAlphabetically = (movies: Movie[]): Movie[] => {
         return movies.sort((a, d) => {

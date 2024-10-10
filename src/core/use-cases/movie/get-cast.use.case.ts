@@ -1,7 +1,7 @@
-import { HttpAdapter } from "../../../config/adapters/http/http.adapter";
-import { MovieDBCastResponse } from "../../../infraestructure/interfaces/movie-db.responses";
-import { CastMapper } from "../../../infraestructure/mappers/cast.mapper";
-import { Cast } from "../../entities/cast.entity";
+import { HttpAdapter } from '../../../config/adapters/http/http.adapter';
+import { MovieDBCastResponse } from '../../../infraestructure/interfaces/movie-db.responses';
+import { CastMapper } from '../../../infraestructure/mappers/cast.mapper';
+import { Cast } from '../../entities/cast.entity';
 
 
 export const getMovieCastUseCase = async (fetcher: HttpAdapter, movieId: number): Promise<Cast[]> => {
@@ -12,6 +12,6 @@ export const getMovieCastUseCase = async (fetcher: HttpAdapter, movieId: number)
         return actors;
     } catch (error) {
         console.log({ error });
-        throw new Error(`Cannot get movie cast of movie: ${movieId}`)
-    };
+        throw new Error(`Cannot get movie cast of movie: ${movieId}`);
+    }
 };

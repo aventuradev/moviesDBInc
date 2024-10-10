@@ -18,6 +18,7 @@ export const useAuth = () => {
 
         const activeSession = await AsyncStorage.getItem('session');
         if (!activeSession || new Date() > new Date(JSON.parse(activeSession).expires_at)) {
+            await AsyncStorage.removeItem('session');
             const session = await UseCases.createSessionUseCase(movieDBAuthenticationAxiosFetcher());
             AsyncStorage.setItem('session', JSON.stringify(session));
             setSessionId(session.session_id);

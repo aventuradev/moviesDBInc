@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Text, View } from 'react-native';
+import { AirbnbRating } from 'react-native-ratings';
 import { FullMovie, Movie } from '../../../core/entities/movie.entity';
-import { Formatter } from '../../../config/helpers/formatter';
 import { Cast } from '../../../core/entities/cast.entity';
 import { FlatList } from 'react-native-gesture-handler';
 import { CastActor } from '../cast/CastActor';
@@ -12,14 +12,23 @@ interface Props {
     movie: FullMovie;
     cast: Cast[];
     related: Movie[];
+    rateMovie: (movieId: number, value: number) => void;
 }
 
-export const MovieDetails = ({ movie, cast, related }: Props) => {
+export const MovieDetails = ({ movie, cast, related, rateMovie }: Props) => {
     return (
         <>
             <View style={{ marginHorizontal: 20 }}>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text>{movie.rating.toFixed(2)} / 10</Text>
+                    <Text>{movie.rating.toFixed(2)}</Text>
+                    <AirbnbRating
+                        defaultRating={Math.round(movie.rating / 2)}
+                        count={1}
+                        isDisabled
+                        showRating={false}
+                        size={16}
+                        selectedColor={movie.rating <= 2 ? '' : movie.rating <= 6 ? '#FF9529' : '#FFDF00'}
+                    />
                     <Text style={{ marginLeft: 5 }}>
                         - {movie.genres.map(genre => genre.name).join(', ')}
                     </Text>
@@ -30,12 +39,19 @@ export const MovieDetails = ({ movie, cast, related }: Props) => {
                 <Text style={{ fontSize: 16 }}>
                     {movie.description}
                 </Text>
+                {/* Rating */}
                 <Text style={{ fontSize: 23, marginTop: 10, fontWeight: 'bold' }}>
-                    Presupuesto
+                    Calificar
                 </Text>
-                <Text style={{ fontSize: 16 }}>
-                    {Formatter.currency(movie.budget)}
-                </Text>
+                <View>
+                    <AirbnbRating
+                        defaultRating={Math.round(movie.rating / 2)}
+                        count={5}
+                        showRating={false}
+                        onFinishRating={(vote: number) => rateMovie(movie.id, vote * 2)}
+                        size={25}
+                    />
+                </View>
             </View>
             {/* Casting */}
 
@@ -51,7 +67,7 @@ export const MovieDetails = ({ movie, cast, related }: Props) => {
             </View>
             {/* Related */}
 
-            <View style={{marginBottom: 20, marginHorizontal: 20 }}>
+            <View style={{ marginBottom: 20, marginHorizontal: 20 }}>
                 <Text style={{ fontSize: 23, marginVertical: 10, fontWeight: 'bold' }}>Películas Recomendadas</Text>
                 <FlatList
                     data={related}
