@@ -44,7 +44,7 @@ npx react-native run-android
 
 ## Pruebas
 
-Estas pruebas se han diseñado para evaluar la correcta implementación de los elementos clave del sistema, asegurando que las funcionalidades primarias. Para ejecutar las pruebas realizadas y verificar la funcionalidad del código, puedes utilizar el siguiente comando en la carpeta del proyecto:
+Las pruebas realizadas se han diseñado para evaluar la correcta implementación de elementos clave del sistema, asegurando que las funcionalidades primarias de los mismos, que pueden presentarse en otros componentes y métodos. Para ejecutar las pruebas realizadas y verificar la funcionalidad del código, puedes utilizar el siguiente comando en la carpeta del proyecto:
 ```bash
 npm run test
 ```
