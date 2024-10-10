@@ -31,6 +31,12 @@ npm install
 MOVIE_DB_API_KEY='TU_API_KEY'
 ```
 
+o en su defecto, colocar el API KEY en los archivos:
+```
+./src/config/adapters/genreDB.adapter.ts
+./src/config/adapters/movieDB.adapter.ts 
+```
+
 4 . Con esto realizado solo resta iniciar el proyecto con el comando:
 ```bash
 npx react-native run-android

@@ -5,6 +5,7 @@ export const byGenreDBAxiosFetcher = (extendedParams: Record<string, unknown>) =
     return new AxiosAdapter({
         baseUrl: 'https://api.themoviedb.org/3/discover/movie',
         params: {
+            // api_key: 'YOUR_API_KEY',
             api_key: MOVIE_DB_API_KEY,
             language: 'es',
             ...extendedParams,
