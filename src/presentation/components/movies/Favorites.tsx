@@ -11,7 +11,7 @@ interface Props {
 export const Favorites = ({favorites}: Props) => {
     return (
         <View style={{ marginBottom: 20, marginHorizontal: 20 }}>
-            <Text style={{ fontSize: 18, marginVertical: 10, fontWeight: 'bold' }}>Favoritas</Text>
+            <Text style={{ fontSize: 18, marginVertical: 10, fontWeight: 'bold' }}>Tus favoritas</Text>
             <FlatList
                 data={Object.values(favorites)}
                 keyExtractor={(item) => item.id.toString()}

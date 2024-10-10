@@ -23,6 +23,7 @@ export const MovieElement = ({ movie, favorites, editFavorites }: Props) => {
       style={({ pressed }) => ({
         opacity: pressed ? 0.9 : 1,
       })}
+      aria-label='container'
     >
       <View style={styles.container}>
         <View style={styles.imageCointainer}>
@@ -48,6 +49,7 @@ export const MovieElement = ({ movie, favorites, editFavorites }: Props) => {
             {
               !!favorites && (
                 <Pressable
+                  aria-label='heart-icon'
                   onPress={() => editFavorites(movie)}
                 >
                   <View style={{ marginLeft: 15 }}>

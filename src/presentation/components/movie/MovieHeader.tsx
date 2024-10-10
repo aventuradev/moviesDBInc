@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {BackChevronIcon} from '../../../assets/BackChevronIcon';
 
 interface Props {
     poster: string;
@@ -32,7 +33,9 @@ export const MovieHeader = ({ poster, originalTitle, title, releaseDate }: Props
                 <Pressable
                     onPress={() => navigation.goBack()}
                 >
-                    <Text style={styles.backButtonText}>Regresar</Text>
+                    <Text style={styles.backButtonText}>
+                        <BackChevronIcon size={50} color='white' />
+                    </Text>
                 </Pressable>
             </View>
         </>
